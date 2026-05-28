@@ -53,7 +53,7 @@ st_autorefresh(
 # FASTAPI CONFIG
 # -----------------------------------
 
-BASE_URL = "http://smartrail-fastapi:8000"
+BASE_URL = "https://smartrail-crowd-analytics-system-production.up.railway.app"
 
 
 # -----------------------------------
