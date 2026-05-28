@@ -47,7 +47,7 @@
 
 # EXPOSE 8000
 # EXPOSE 8501
-FROM python:3.10-slim
+FROM python:3.11
 
 WORKDIR /app
 
