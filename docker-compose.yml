@@ -1,0 +1,215 @@
+# # =========================================================
+# # SmartRail Crowd Analytics and Passenger Safety System
+# # Production-Ready Docker Compose Configuration
+# # =========================================================
+
+# version: "3.9"
+
+# services:
+
+#   # =======================================================
+#   # FastAPI Backend Service
+#   # =======================================================
+#   fastapi-backend:
+
+#     # Clean container name
+#     container_name: smartrail-fastapi
+
+#     # Build Docker image from current directory
+#     build:
+#       context: .
+#       dockerfile: Dockerfile
+
+#     # Expose FastAPI port
+#     ports:
+#       - "8000:8000"
+
+#     # Automatically restart container if it crashes
+#     restart: always
+
+#     # Shared environment variables
+#     environment:
+#       PYTHONUNBUFFERED: 1
+#       APP_ENV: production
+
+#     # Mount project files inside container
+#     # Useful during development
+#     volumes:
+#       - .:/app
+
+#     # Start FastAPI server
+#     command: >
+#       uvicorn main:app
+#       --host 0.0.0.0
+#       --port 8000
+
+#   # =======================================================
+#   # Streamlit Dashboard Service
+#   # =======================================================
+#   streamlit-dashboard:
+
+#     # Clean container name
+#     container_name: smartrail-dashboard
+
+#     # Use same Docker image
+#     build:
+#       context: .
+#       dockerfile: Dockerfile
+
+#     # Expose Streamlit port
+#     ports:
+#       - "8501:8501"
+
+#     # Automatically restart container
+#     restart: always
+
+#     # Shared environment variables
+#     environment:
+#       PYTHONUNBUFFERED: 1
+#       APP_ENV: production
+
+#     # Mount project files
+#     volumes:
+#       - .:/app
+
+#     # Start Streamlit dashboard
+#     command: >
+#       streamlit run dashboard/dashboard.py
+#       --server.port 8501
+#       --server.address 0.0.0.0
+
+# services:
+
+#   fastapi-backend:
+#     container_name: smartrail-fastapi
+
+#     build:
+#       context: .
+#       dockerfile: Dockerfile
+
+#     ports:
+#       - "8000:8000"
+
+
+#     restart: always
+
+#     command: >
+#       uvicorn run_api:app
+#       --host 0.0.0.0
+#       --port 8000
+
+#   streamlit-dashboard:
+#     container_name: smartrail-dashboard
+
+#     build:
+#       context: .
+#       dockerfile: Dockerfile
+
+#     ports:
+#       - "8501:8501"
+
+
+#     restart: always
+
+
+#     command: >
+#       streamlit run dashboard/dashboard.py
+#       --server.port 8501
+#       --server.address 0.0.0.0
+
+# services:
+
+#   fastapi-backend:
+#     container_name: smartrail-fastapi
+
+#     build:
+#       context: .
+#       dockerfile: Dockerfile
+
+#     ports:
+#       - "8000:8000"
+
+#     volumes:
+#       - .:/app
+
+#     working_dir: /app
+
+#     restart: always
+
+#     command: >
+#       uvicorn run_api:app
+#       --host 0.0.0.0
+#       --port 8000
+
+
+#   streamlit-dashboard:
+#     container_name: smartrail-dashboard
+
+#     build:
+#       context: .
+#       dockerfile: Dockerfile
+
+#     ports:
+#       - "8501:8501"
+
+#     volumes:
+#       - .:/app
+
+#     working_dir: /app
+
+#     restart: always
+
+#     command: >
+#       streamlit run app/dashboard/dashboard.py
+#       --server.port 8501
+#       --server.address 0.0.0.0
+
+
+
+
+services:
+
+  fastapi-backend:
+    container_name: smartrail-fastapi
+
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    ports:
+      - "8000:8000"
+
+    volumes:
+      - .:/app
+
+    working_dir: /app
+
+    restart: always
+
+    command: >
+      uvicorn app.run_api:app
+      --host 0.0.0.0
+      --port 8000
+
+
+  streamlit-dashboard:
+    container_name: smartrail-dashboard
+
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    ports:
+      - "8501:8501"
+
+    volumes:
+      - .:/app
+
+    working_dir: /app
+
+    restart: always
+
+    command: >
+      streamlit run app/dashboard/dashboard.py
+      --server.port 8501
+      --server.address 0.0.0.0
